@@ -10,6 +10,7 @@ A simple, cross-platform Bash script to monitor the availability of network host
 - **Smart Parsing:** Ignores empty lines and comments (lines starting with `#`) in the configuration file.
 - **Port Checking:** Test specific service availability (Web, SSH, Database) on any remote or local host.
 - **Dynamic Arguments:** No configuration needed for port testing; just pass the host and port directly in the command line.
+- **Disk Space Monitoring:** Real-time check of disk usage with customizable alert thresholds (Works on Linux & Windows).
 
 ### 🚀 Getting Started
 
@@ -42,18 +43,20 @@ google.com
 
 This kit contains multiple tools for network diagnostics.
 
-### 1. Network Status Checker (Bulk Ping)
-Check all hosts from your `hosts.txt` file at once.
-```bash
-bash network_checker.sh
-```
-2. Port Checker (Specific Service)
-Check if a specific port is open on an IP or domain.
-Syntax: bash port_checker.sh <hostname_or_ip> <port>
+### 🌐 Network Tools
+Ping Checker:
+  ```bash
+  bash Network/network_checker.sh
+  ```
 
-Example:
+  Port Checker:
+  ```bash
+  bash Network/port_checker.sh google.com 443
+  ```
+ ### 💻 System Tools
+Disk Monitor:
 ```bash
-bash port_checker.sh google.com 443
+bash System/disk_monitor.sh
 ```
 
 ### 🔧 Troubleshooting
