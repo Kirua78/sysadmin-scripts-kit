@@ -26,6 +26,10 @@ cd sysadmin-scripts-kit
 
 Security Note: Create your own hosts.txt file in the root directory. This project uses a .gitignore file to ensure your local IP addresses and private network configurations are never uploaded to GitHub.
 
+**VIA TERMINAL**
+- **Linux/macOS/Git Bash:** `touch hosts.txt`
+- **Windows PowerShell:** `New-Item hosts.txt`
+
 Add your targets to the hosts.txt file, one per line:
 ```text
 # Internet connectivity check
