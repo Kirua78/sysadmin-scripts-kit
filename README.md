@@ -1,103 +1,120 @@
-### 🛠️ Sysadmin Scripts Kit : Network Status Checker
+# 🛠️ Sysadmin Scripts Kit
 
-A simple, cross-platform Bash script to monitor the availability of network hosts (servers, routers, devices) using ICMP ping.
+A simple, cross-platform Bash script toolkit to monitor network hosts, check ports, and track disk usage — works on Linux, macOS, and Windows (Git Bash / WSL).
 
-### ✨ Features
+---
 
-- **Cross-Platform:** Automatically detects the operating system (Windows via Git Bash/MSYS or Linux/macOS/WSL) and adapts the `ping` syntax accordingly.
-- **Clean Output:** Hides the verbose ping statistics to display a clean, readable ✅ (Accessible) or ❌ (Unreachable) status.
-- **Easy Configuration:** Reads target IP addresses and domain names from a simple `hosts.txt` file.
-- **Smart Parsing:** Ignores empty lines and comments (lines starting with `#`) in the configuration file.
-- **Port Checking:** Test specific service availability (Web, SSH, Database) on any remote or local host.
-- **Dynamic Arguments:** No configuration needed for port testing; just pass the host and port directly in the command line.
-- **Disk Space Monitoring:** Real-time check of disk usage with customizable alert thresholds (Works on Linux & Windows).
+## ✨ Features
 
-### 🚀 Getting Started
+- **Cross-Platform** — Automatically detects the OS (Windows, Linux, macOS, WSL) and adapts accordingly.
+- **Clean Output** — Displays a readable ✅ / ❌ status without verbose ping noise.
+- **Easy Configuration** — Reads hosts from a simple `hosts.txt` file.
+- **Smart Parsing** — Ignores empty lines and `#` comments in config files.
+- **Port Checking** — Test service availability (HTTP, SSH, DB...) on any host.
+- **Disk Monitoring** — Real-time disk usage check with customizable alert threshold.
 
-### 1. Prerequisites
-- A bash environment (Linux, macOS, or Windows with Git Bash / WSL).
+---
 
-### 2. Setup
-Clone this repository to your local machine:
+## 🚀 Getting Started
+
+### Prerequisites
+
+- A Bash environment: Linux, macOS, or Windows with **Git Bash** or **WSL**.
+
+### Installation
+
 ```bash
 git clone https://github.com/Kirua78/sysadmin-scripts-kit.git
 cd sysadmin-scripts-kit
 ```
 
-Security Note: Create your own hosts.txt file in the root directory. This project uses a .gitignore file to ensure your local IP addresses and private network configurations are never uploaded to GitHub.
+> **Security note:** Create your own `hosts.txt` file locally. It is listed in `.gitignore` so your private IPs are never pushed to GitHub.
 
+---
 
-### 🚀 Usage
+## ⚙️ Setup — Create your target list
 
-This kit contains multiple tools for network diagnostics.
+The network scripts need a `hosts.txt` file with the hosts to check.
 
-### 🌐 Network Tools
+**Option A — Beginners (Mouse & Notepad)**
 
-Ping Checker
+1. Right-click `hosts.example.txt` and choose **Copy**.
+2. Paste it in the same folder.
+3. Rename the copy to `hosts.txt`.
+4. Open it with Notepad, add your IPs or domains (one per line), and save.
 
-## ⚙️ How to use this kit
+**Option B — Terminal**
 
-### Step 1: Create your target list
-The scripts need a list of servers to check. You must create a private file named `hosts.txt`.
-
-**Option A: For Beginners (Mouse & Notepad)**
-1. In your folder, right-click `hosts.example.txt` and choose **Copy**.
-2. **Paste** it in the same folder.
-3. **Rename** the copy to `hosts.txt`.
-4. Open it with **Notepad**, add your IP addresses (one per line), and **Save**.
-
-**Option B: For Advanced Users (Terminal)**
 ```bash
-# Linux/macOS/Git Bash
+# Linux / macOS / Git Bash
 cp hosts.example.txt hosts.txt
 
 # Windows PowerShell
 Copy-Item hosts.example.txt hosts.txt
+```
 
-**VIA TERMINAL**
-- **Linux/macOS/Git Bash:** `touch hosts.txt`
-- **Windows PowerShell:** `New-Item hosts.txt`
+Then edit `hosts.txt` and add your targets:
 
-Add your targets to the hosts.txt file, one per line:
 ```text
 # Internet connectivity check
 google.com
 8.8.8.8
 127.0.0.1
 1.1.1.1
-```
 
-```text
-# Local network devices for example
+# Local network devices
 192.168.1.1
 192.168.1.20
 ```
 
-  ```bash
-  bash Network/network_checker.sh
-  ```
+---
 
+## 🌐 Network Tools
 
-  Port Checker:
-  ```bash
-  bash Network/port_checker.sh google.com 443
-  ```
- ### 💻 System Tools
-Disk Monitor:
+### Ping Checker
+
+Checks if each host in `hosts.txt` is reachable.
+
+```bash
+bash Network/network_checker.sh
+```
+
+### Port Checker
+
+Tests if a specific port is open on a host.
+
+```bash
+bash Network/port_checker.sh google.com 443
+```
+
+---
+
+## 💻 System Tools
+
+### Disk Monitor
+
+Checks disk usage and alerts if it exceeds the configured threshold (default: 80%).
+
 ```bash
 bash System/disk_monitor.sh
 ```
 
-### 🔧 Troubleshooting
-Pinging Windows hosts from WSL (Windows Subsystem for Linux)
-If you are running this script inside WSL and trying to ping your Windows host machine (or other Windows machines on the network), they might show up as ❌ INJOIGNABLE even if they are online.
+---
 
-This happens because the Windows Firewall blocks incoming ICMP requests from different subnets (like the WSL virtual network) by default.
+## 🔧 Troubleshooting
 
-```bash
-Fix: Open a PowerShell as Administrator on the target Windows machine and run:
+### Windows hosts appear unreachable from WSL
+
+Windows machines may show ❌ even when online. This is because the Windows Firewall blocks ICMP requests from the WSL virtual network by default.
+
+**Fix** — Run this in PowerShell as Administrator on the target Windows machine:
+
+```powershell
 New-NetFirewallRule -Name "AllowPing" -DisplayName "Allow ICMPv4-In" -Protocol ICMPv4 -IcmpType 8 -Action Allow
 ```
 
-### 📝 License
+---
+
+## 📝 License
+
 This project is for educational and personal use. Feel free to fork and modify it!
