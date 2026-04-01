@@ -26,6 +26,34 @@ cd sysadmin-scripts-kit
 
 Security Note: Create your own hosts.txt file in the root directory. This project uses a .gitignore file to ensure your local IP addresses and private network configurations are never uploaded to GitHub.
 
+
+### 🚀 Usage
+
+This kit contains multiple tools for network diagnostics.
+
+### 🌐 Network Tools
+
+Ping Checker
+
+## ⚙️ How to use this kit
+
+### Step 1: Create your target list
+The scripts need a list of servers to check. You must create a private file named `hosts.txt`.
+
+**Option A: For Beginners (Mouse & Notepad)**
+1. In your folder, right-click `hosts.example.txt` and choose **Copy**.
+2. **Paste** it in the same folder.
+3. **Rename** the copy to `hosts.txt`.
+4. Open it with **Notepad**, add your IP addresses (one per line), and **Save**.
+
+**Option B: For Advanced Users (Terminal)**
+```bash
+# Linux/macOS/Git Bash
+cp hosts.example.txt hosts.txt
+
+# Windows PowerShell
+Copy-Item hosts.example.txt hosts.txt
+
 **VIA TERMINAL**
 - **Linux/macOS/Git Bash:** `touch hosts.txt`
 - **Windows PowerShell:** `New-Item hosts.txt`
@@ -35,6 +63,8 @@ Add your targets to the hosts.txt file, one per line:
 # Internet connectivity check
 google.com
 8.8.8.8
+127.0.0.1
+1.1.1.1
 ```
 
 ```text
@@ -43,15 +73,10 @@ google.com
 192.168.1.20
 ```
 
-### 🚀 Usage
-
-This kit contains multiple tools for network diagnostics.
-
-### 🌐 Network Tools
-Ping Checker:
   ```bash
   bash Network/network_checker.sh
   ```
+
 
   Port Checker:
   ```bash
