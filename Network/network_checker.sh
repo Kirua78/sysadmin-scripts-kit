@@ -1,23 +1,23 @@
 #!/bin/bash
 HOSTS_FILE="hosts.txt"
+
 echo "🚀 Début de la vérification réseau"
 
+if [ ! -f "$HOSTS_FILE" ]; then
+    echo "❌ Erreur : $HOSTS_FILE introuvable."
+    exit 1
+fi
+
 while IFS= read -r host || [ -n "$host" ]; do
-    [[ -z "$host" || "$host" =~ ^# ]] && continue
-    # Nettoyage des retours chariots (très important quand on passe de Windows à Linux)
-    host=$(echo "$host" | tr -d '\r')
+    # Nettoyage immédiat
+    host=$(echo "$host" | tr -d '\r' | xargs)
+    
+    # Ignorer les lignes vides ou commentaires
+    [[ -z "$host" || "$host" == #* ]] && continue
 
-    # --- DÉBUT DE LA MODIFICATION ---
-    # On détecte si on est sur Windows (via Git Bash/MSYS) ou sur Linux (WSL/Debian)
-    if [[ "$OSTYPE" == "msys" || "$OSTYPE" == "cygwin" ]]; then
-        # Syntaxe pour Windows
-        ping -n 5 -w 2000 "$host" > /dev/null 2>&1
-    else
-        # Syntaxe pour Linux (Debian) et macOS
-        ping -c 5 -W 2 "$host" > /dev/null 2>&1
-    fi
-    # --- FIN DE LA MODIFICATION ---
-
+    # Ping (compatible Windows/Linux via Bash)
+    ping -c 1 -W 2 "$host" > /dev/null 2>&1
+    
     if [ $? -eq 0 ]; then
         echo "✅ $host : ACCESSIBLE"
     else
