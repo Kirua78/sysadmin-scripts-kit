@@ -53,7 +53,7 @@ Syntax: bash port_checker.sh <hostname_or_ip> <port>
 
 Example:
 ```bash
-port_checker.sh google.com 443
+bash port_checker.sh google.com 443
 ```
 
 ### 🔧 Troubleshooting
