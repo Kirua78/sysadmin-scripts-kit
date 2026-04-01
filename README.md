@@ -8,6 +8,8 @@ A simple, cross-platform Bash script to monitor the availability of network host
 - **Clean Output:** Hides the verbose ping statistics to display a clean, readable ✅ (Accessible) or ❌ (Unreachable) status.
 - **Easy Configuration:** Reads target IP addresses and domain names from a simple `hosts.txt` file.
 - **Smart Parsing:** Ignores empty lines and comments (lines starting with `#`) in the configuration file.
+- **Port Checking:** Test specific service availability (Web, SSH, Database) on any remote or local host.
+- **Dynamic Arguments:** No configuration needed for port testing; just pass the host and port directly in the command line.
 
 ### 🚀 Getting Started
 
@@ -36,10 +38,22 @@ google.com
 192.168.1.20
 ```
 
-### 3. Usage
-Run the script from your terminal:
+### 🚀 Usage
+
+This kit contains multiple tools for network diagnostics.
+
+### 1. Network Status Checker (Bulk Ping)
+Check all hosts from your `hosts.txt` file at once.
 ```bash
 bash network_checker.sh
+```
+2. Port Checker (Specific Service)
+Check if a specific port is open on an IP or domain.
+Syntax: bash port_checker.sh <hostname_or_ip> <port>
+
+Example:
+```bash
+port_checker.sh google.com 443
 ```
 
 ### 🔧 Troubleshooting
