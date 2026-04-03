@@ -105,7 +105,7 @@ bash System/disk_monitor.sh
 
 ### Windows hosts appear unreachable from WSL
 
-Windows machines may show ❌ even when online. This is because the Windows Firewall blocks ICMP requests from the WSL virtual network by default.
+Windows machines may show ✖ even when online. This is because the Windows Firewall blocks ICMP requests from the WSL virtual network by default.
 
 **Fix** - Run this in PowerShell as Administrator on the target Windows machine:
 
