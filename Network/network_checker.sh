@@ -6,9 +6,9 @@ host=$(echo "$host" | tr -d '\r' | xargs)
 [[ -z "$host" || "$host" == \#* ]] && continue
 ping -c 1 -W 2 "$host" > /dev/null 2>&1
 if [ $? -eq 0 ]; then
-echo "✅ $host : ACCESSIBLE"
+echo "✔ $host : ACCESSIBLE"
 else
-echo "❌ $host : INJOIGNABLE"
+echo "✖ $host : INJOIGNABLE"
 fi
 done < "$HOSTS_FILE"
 echo "🏁 Terminé."

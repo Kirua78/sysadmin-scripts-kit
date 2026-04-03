@@ -1,7 +1,7 @@
 #!/bin/bash
 
 THRESHOLD=80
-echo "🗂️ Vérification de l'espace disque..."
+echo "Vérification de l'espace disque..."
 
 # --- DÉTECTION DE L'OS ---
 if [[ "$OSTYPE" == "msys" || "$OSTYPE" == "cygwin" ]] || grep -qi microsoft /proc/version 2>/dev/null; then
@@ -14,7 +14,7 @@ fi
 
 # --- AFFICHAGE DU RÉSULTAT ---
 if [ "$usage" -gt "$THRESHOLD" ]; then
-    echo "⚠️ ALERTE : Espace critique sur le disque principal ! Utilisation à ${usage}%."
+    echo "[!] ALERTE : Espace critique sur le disque principal ! Utilisation à ${usage}%."
 else
-    echo "✅ Espace disque OK : Utilisation à ${usage}% (Seuil : ${THRESHOLD}%)."
+    echo "✔ Espace disque OK : Utilisation à ${usage}% (Seuil : ${THRESHOLD}%)."
 fi

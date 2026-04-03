@@ -7,7 +7,7 @@ A simple, cross-platform Bash script toolkit to monitor network hosts, check por
 ## Features
 
 - **Cross-Platform** - Automatically detects the OS (Windows, Linux, macOS, WSL) and adapts accordingly.
-- **Clean Output** - Displays a readable ✅ / ❌ status without verbose ping noise.
+- **Clean Output** - Displays a readable ✔ / ✖ status without verbose ping noise.
 - **Easy Configuration** - Reads hosts from a simple `hosts.txt` file.
 - **Smart Parsing** - Ignores empty lines and `#` comments in config files.
 - **Port Checking** - Test service availability (HTTP, SSH, DB...) on any host.
